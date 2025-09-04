@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+echo "\
+  ######################################################################
+  running 03 check-workstation
+  ######################################################################"
+
+# Check for state list
+if [ $(grep -c "terraform state list" /root/.bash_history) -lt 1 ]; then
+  fail-message "Did you run 'terraform state list'?"
+fi
+
+# Check for state show
+if [ $(grep -c "terraform state show 'aws_vpc.hashicat'" /root/.bash_history) -lt 1 ]; then
+  fail-message "Did you check the values for aws_vpc.hashicat?"
+fi

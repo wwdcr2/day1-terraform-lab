@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+echo "\
+  ######################################################################
+  running 03 solve-workstation
+  ######################################################################"
+
+# Enable bash history
+HISTFILE=/root/.bash_history
+set -o history
+
+# Move directory
+cd /root/code/terraform
+
+# Run commands
+/usr/local/bin/terraform state list
+/usr/local/bin/terraform state show 'aws_vpc.hashicat'
+
+exit 0

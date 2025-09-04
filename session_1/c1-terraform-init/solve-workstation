@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+echo "\
+  ######################################################################
+  running 01 solve-workstation
+  ######################################################################"
+
+# Enable bash history
+HISTFILE=/root/.bash_history
+set -o history
+
+# Run starting commands
+cd /root/code/terraform
+
+/usr/local/bin/terraform init
+terraform fmt
+terraform validate -json
+
+exit 0
