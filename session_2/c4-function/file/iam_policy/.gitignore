@@ -1,0 +1,23 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform cache directory
+.terraform/
+
+# Variable definition files (sensitive)
+*.tfvars
+*.tfvars.json
+
+# Override files (local only)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# Terraform plan output files
+*.tfplan*
