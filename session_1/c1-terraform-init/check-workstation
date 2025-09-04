@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+echo "\
+  ######################################################################
+  running 01 check-workstation
+  ######################################################################"
+
+# Enable bash history
+HISTFILE=/root/.bash_history
+set -o history
+
+# Check for init
+if [ $(grep -c "terraform init" /root/.bash_history) -lt 1 ]; then
+  fail-message "Did you run 'terraform init' in the working directory?"
+fi
+
+# Check for fmt
+if [ $(grep -c "terraform fmt" /root/.bash_history) -lt 1 ]; then
+  fail-message "Did you run 'terraform fmt'?"
+fi
+
+# Check for validate
+if [ $(grep -c "terraform validate -json" /root/.bash_history) -lt 1 ]; then
+  fail-message "Did you run 'terraform validate -json'?"
+fi

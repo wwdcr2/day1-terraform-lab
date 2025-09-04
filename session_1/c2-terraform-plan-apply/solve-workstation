@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+echo "\
+  ######################################################################
+  running 02 solve-workstation
+  ######################################################################"
+
+# Enable bash history
+HISTFILE=/root/.bash_history
+set -o history
+
+# Change directory
+cd /root/code/terraform
+
+# Create plan file
+/usr/local/bin/terraform plan -out "HashiCatPlan.tfplan"
+
+# Run the apply step w/ the plan file
+/usr/local/bin/terraform apply "HashiCatPlan.tfplan"
+
+exit 0
