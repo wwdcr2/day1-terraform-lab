@@ -1,0 +1,5 @@
+security_group_name,type,protocol,from_port,to_port,cidr_blocks,description
+sgs-web,ingress,tcp,80,80,0.0.0.0/0,http from internet
+sgs-web,ingress,tcp,443,443,0.0.0.0/0,https from internet
+sgs-web,egress,tcp,3389,3389,${vpc_cidr},egress for db
+sgs-db,ingress,tcp,3389,3389,${vpc_cidr},ingress for db
