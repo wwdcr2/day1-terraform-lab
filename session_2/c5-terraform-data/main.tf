@@ -1,29 +1,29 @@
 locals {
-  resource_name    = "demo"
+  resource_name = "demo"
 }
 
 data "aws_ami" "al2023" {
   most_recent = true
-  owners = ["amazon"]
+  owners      = ["amazon"]
 
   filter {
-    name = "name"
-    values = [ "al2023-ami-2023*" ]
+    name   = "name"
+    values = ["al2023-ami-2023*"]
   }
 
   filter {
-    name = "architecture"
-    values = [ "x86_64" ]
+    name   = "architecture"
+    values = ["x86_64"]
   }
 
   filter {
-    name = "root-device-type"
-    values = [ "ebs" ]
+    name   = "root-device-type"
+    values = ["ebs"]
   }
 
   filter {
-    name = "virtualization-type"
-    values = [ "hvm" ]
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
 
@@ -48,7 +48,7 @@ resource "terraform_data" "delete_local_key_pair" {
   input = aws_key_pair.demo
 
   provisioner "local-exec" {
-    when = destroy
+    when    = destroy
     command = "rm -f ./${self.input.key_name}.pem"
   }
 }

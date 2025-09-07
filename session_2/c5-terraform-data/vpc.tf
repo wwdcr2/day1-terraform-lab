@@ -1,8 +1,8 @@
 locals {
   public_subnet_map = {
     for index, az in var.availability_zones : az => {
-      index = index
-      name = "${var.vpc_name}-pub-${az}"
+      index             = index
+      name              = "subnet-pub-${az}"
       availability_zone = "${var.region}${az}"
     }
   }
@@ -16,10 +16,6 @@ resource "aws_vpc" "this" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   instance_tenancy     = "default"
-
-  tags = {
-    "Name" = var.vpc_name
-  }
 }
 
 # Internet Gateway
@@ -52,22 +48,22 @@ resource "aws_route_table" "this" {
 }
 
 resource "aws_route" "this_igw" {
-  route_table_id              = aws_route_table.this.id
+  route_table_id         = aws_route_table.this.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id      = aws_internet_gateway.this.id
+  gateway_id             = aws_internet_gateway.this.id
 }
 
 resource "aws_route_table_association" "this" {
   for_each = aws_subnet.publics
-  
+
   subnet_id      = each.value.id
   route_table_id = aws_route_table.this.id
 }
 
 # Security Group
 resource "aws_security_group" "ec2" {
-  name        = local.resource_name
-  vpc_id      = aws_vpc.this.id
+  name   = local.resource_name
+  vpc_id = aws_vpc.this.id
 
   ingress {
     from_port   = 80
