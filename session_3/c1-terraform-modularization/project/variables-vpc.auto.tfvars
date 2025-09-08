@@ -4,10 +4,10 @@ vpc = {
 }
 
 subnet_list = [
-  { name = "sbn-tfacademy-public-az1", type = "public", az = "ap-northeast-2a", cidr_block = "10.0.0.0/24" },
-  { name = "sbn-tfacademy-public-az3", type = "public", az = "ap-northeast-2c", cidr_block = "10.0.2.0/24" },
-  { name = "sbn-tfacademy-private-az1", type = "private", az = "ap-northeast-2a", cidr_block = "10.0.10.0/24" },
-  { name = "sbn-tfacademy-private-az3", type = "private", az = "ap-northeast-2c", cidr_block = "10.0.12.0/24" },
+  { name = "sbn-tfacademy-public-az1", type = "public", az = "us-east-1a", cidr_block = "10.0.0.0/24" },
+  { name = "sbn-tfacademy-public-az3", type = "public", az = "us-east-1c", cidr_block = "10.0.2.0/24" },
+  { name = "sbn-tfacademy-private-az1", type = "private", az = "us-east-1a", cidr_block = "10.0.10.0/24" },
+  { name = "sbn-tfacademy-private-az3", type = "private", az = "us-east-1c", cidr_block = "10.0.12.0/24" },
 ]
 
 internet_gateway = {
