@@ -22,27 +22,27 @@ variable "address_space" {
   type        = string
   default     = "10.0.0.0/16"
   validation {
-    condition     = can(cidrhost(var.string_like_valid_ipv4_cidr, 32), var.address_space)
+    condition     = can(cidrhost(var.address_space, 32))
     error_message = "variable address_space must be valid IPv4 CIDR."
   }
 }
 
 variable "subnet_prefix" {
   description = "The address prefix to use for the subnet."
-  type        = string
-  default     = "10.0.10.0/24"
+  type                       = string
+  default = "10.0.10.0/24"
 }
 
 variable "instance_type" {
   description = "Specifies the AWS instance type."
-  type        = string
-  default     = "t2.micro"
+  type                      = string
+  default = "t2.micro"
 }
 
 variable "admin_username" {
   description = "Administrator user name for mysql"
-  type        = string
-  default     = "hashicorp"
+  type = string
+  default = "hashicorp"
 }
 
 variable "height" {
